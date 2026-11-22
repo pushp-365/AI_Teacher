@@ -1,0 +1,4 @@
+groq
+python-pptx
+requests
+python-dotenv

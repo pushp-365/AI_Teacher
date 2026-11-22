@@ -1,0 +1,43 @@
+**Quiz: Zero‑Shot vs. Few‑Shot Prompting (Intermediate Level)**  
+
+---
+
+**1.** In a zero‑shot prompt, what is the model expected to do?  
+
+A) Recall a previously seen example from memory  
+B) Generate a response based solely on the prompt text  
+C) Use a supplied example to infer the task  
+D) Retrieve an answer from a database  
+
+**Correct Answer:** B) Generate a response based solely on the prompt text  
+
+**Explanation:**  
+A zero‑shot prompt gives the model no explicit example; it must rely entirely on its internal knowledge and the prompt wording.
+
+---
+
+**2.** Which of the following best describes a few‑shot prompt?  
+
+A) The prompt includes no instructions, only the question.  
+B) The prompt provides a single example and then asks the model to continue.  
+C) The prompt supplies several labeled examples before the query.  
+D) The prompt is a chain of reasoning that the model must follow.  
+
+**Correct Answer:** C) The prompt supplies several labeled examples before the query.  
+
+**Explanation:**  
+Few‑shot prompting gives a handful of demonstration pairs (input‑output) to help the model infer the desired mapping for the new input.
+
+---
+
+**3.** Why might a few‑shot prompt outperform a zero‑shot prompt on a complex classification task?  
+
+A) It forces the model to memorize all possible labels.  
+B) It reduces the token limit for the final answer.  
+C) It provides concrete examples that narrow the model’s hypothesis space.  
+D) It disables the model’s internal knowledge base.  
+
+**Correct Answer:** C) It provides concrete examples that narrow the model’s hypothesis space.  
+
+**Explanation:**  
+By showing specific input‑output pairs, few‑shot prompting guides the model toward the correct decision rule, especially when the task is ambiguous or has many classes.

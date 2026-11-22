@@ -1,0 +1,150 @@
+**Slide 1 – Title Card**  
+**“Zero‑shot vs. Few‑shot Prompting”**  
+
+*(Energetic music cue – think a vibrant Bollywood opening number)*  
+
+> “Namaste, future AI‑directors! Today we’re rolling out the red carpet for two stars of the LLM‑world: **Zero‑shot** and **Few‑shot Prompting**. Think of them as the *hero* and the *side‑kick* in a blockbuster—both can save the day, but they play very different roles. Let’s cue the lights!”  
+
+---
+
+## Slide 2 – Learning Objectives  
+
+> “By the end of today’s show, you will be able to:  
+
+1. **Define** zero‑shot and few‑shot prompting with crisp, production‑ready language.  
+2. **Identify** when to use each technique in real‑world pipelines.  
+3. **Construct** a simple prompt that demonstrates each style.  
+4. **Compare** performance trade‑offs—speed, accuracy, and data‑efficiency.  
+
+*Think of these objectives as the script outline—once you know the plot, the performance flows naturally.*  
+
+*(Cue a brief pause for the audience to nod)*  
+
+---
+
+## Slide 3 – Core Concepts  
+
+### 1️⃣ Zero‑shot Prompting  
+- **Definition:** The model receives **only the task description** (and perhaps a question) – no examples.  
+- **Analogy:** Imagine a Bollywood hero stepping onto the set **without a rehearsal**. He’s given the *script line* (“Save the kingdom!”) and must act immediately.  
+- **When it shines:**  
+  - When you have *no labeled examples* or the cost of curating examples is high.  
+  - For *quick prototyping* or when the model has already seen similar tasks during pre‑training.  
+
+### 2️⃣ Few‑shot Prompting  
+- **Definition:** The prompt includes **a handful (1‑N) of task‑specific examples** before the new query.  
+- **Analogy:** Our hero now has a *training montage*—a quick 3‑minute sequence showing him dodging bullets, climbing cliffs, and delivering a punchline. Those snapshots guide his performance on the final scene.  
+- **When it shines:**  
+  - When the task is *niche* or deviates from the model’s pre‑training distribution.  
+  - When you can afford a few curated examples to boost accuracy.  
+
+### 3️⃣ Prompt Anatomy (Both Styles)  
+| Component | Zero‑shot | Few‑shot |
+|-----------|-----------|----------|
+| **Task Description** | ✔︎ Required | ✔︎ Required |
+| **Demonstration Examples** | ❌ Omitted | ✔︎ 1‑N examples |
+| **Query / Input** | ✔︎ Appears after description | ✔︎ Appears after examples |
+| **Length** | Typically shorter | Slightly longer (but still compact) |
+
+*(Insert subtle “drumroll” sound effect)*  
+
+---
+
+## Slide 4 – Worked Example  
+
+**Task:** *Translate English to Hindi*  
+
+### Zero‑shot Prompt  
+
+```
+Translate the following sentence to Hindi:
+"The sunset painted the sky in gold."
+```
+
+*What the model does:* It leans on its pre‑training knowledge of English‑Hindi pairs and generates the translation directly.  
+
+### Few‑shot Prompt (3‑shot)  
+
+```
+Translate English to Hindi.
+
+Example 1:
+English: "I love mangoes."
+Hindi: "Mujhe aam pasand hain."
+
+Example 2:
+English: "The train arrived on time."
+Hindi: "Railgaadi samay par pahunchi."
+
+Example 3:
+English: "She sings beautifully."
+Hindi: "Woh sundar gaati hai."
+
+Now translate:
+"The sunset painted the sky in gold."
+```
+
+**Break‑down (spoken cue):**  
+- *[Enthusiastic tone]* “Notice how we gave the model three mini‑scenes—each a crisp, parallel pair. This is our ‘training montage’. The model now knows the *style* and *tone* we expect.”  
+
+**Result comparison (quick on‑screen table):**  
+
+| Prompt Type | Typical BLEU Score (sample) | Latency |
+|-------------|----------------------------|---------|
+| Zero‑shot   | 28‑30                       | ~0.5 s |
+| Few‑shot (3) | 35‑38                       | ~0.7 s |
+
+*(Cue a subtle “ta‑ta‑ta‑ta” of applause)*  
+
+---
+
+## Slide 5 – Comparison: Zero‑shot vs. Few‑shot  
+
+| Dimension | Zero‑shot | Few‑shot |
+|-----------|-----------|----------|
+| **Data Requirement** | None (besides task description) | 1‑N examples (usually 1‑5) |
+| **Prompt Length** | Short → Faster inference | Longer → Slightly slower |
+| **Accuracy** | Good for *in‑distribution* tasks | Better for *out‑of‑distribution* or nuanced tasks |
+| **Robustness to Prompt Variations** | Sensitive to wording of the description | Gains stability from examples |
+| **Cost of Preparation** | Minimal | Small labeling effort |
+| **Best Use‑Case Metaphor** | Hero walking onto set with only the director’s cue | Hero doing a quick *training montage* before the climax |
+
+**Cinematic takeaway:** Zero‑shot is the *“one‑take”* stunt—high risk, high speed. Few‑shot is the *“slow‑mo montage”*—more preparation, higher chance of a perfect landing.  
+
+*(Insert a quick “action!” graphic)*  
+
+---
+
+## Slide 6 – Recap  
+
+1. **Zero‑shot** = task description only; think “hero, no rehearsal”.  
+2. **Few‑shot** = description + a few examples; think “hero’s training montage”.  
+3. **When to pick:**  
+   - *Zero‑shot* for rapid prototypes, abundant pre‑training knowledge, or when labeling is impossible.  
+   - *Few‑shot* when you need that extra accuracy boost and can spare a few curated pairs.  
+4. **Prompt design matters:** clear instruction, consistent formatting, and minimal ambiguity are the “director’s vision” that guides the LLM.  
+
+*“Picture abhi baaki hai, dosto!”* – the story continues as you start experimenting with your own prompts.  
+
+---
+
+## Slide 7 – Knowledge Check (Mini‑Quiz)  
+
+**1️⃣** *True or False:* Zero‑shot prompting always yields higher latency than few‑shot prompting.  
+
+**2️⃣** In a few‑shot prompt, why is it important to keep the **example format** consistent?  
+
+**3️⃣** You have a brand‑new, domain‑specific FAQ dataset (only 10 questions). Which prompting style would you start with and why?  
+
+*(Pause for audience to think – “Dramatic interval” cue)*  
+
+**Answers (reveal on next slide or handout):**  
+1. **False** – few‑shot prompts are usually slightly longer, so latency can be a bit higher.  
+2. Consistency signals the pattern the model should follow; inconsistent formatting confuses the “script”.  
+3. Start with **few‑shot** – the handful of examples give the model the domain context it otherwise lacks.  
+
+---  
+
+*Thank you, superstar learners! Remember, whether you’re directing a zero‑shot solo act or a few‑shot ensemble, the secret sauce is a clear, compelling prompt. Now go out there and make your LLMs the next Bollywood blockbusters!*  
+
+*(Cue closing music, lights dim, audience applause)*
